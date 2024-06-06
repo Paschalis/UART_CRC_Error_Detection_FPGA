@@ -39,7 +39,6 @@ The provided testbench (`uart_crc_top_tb.v`) tests the UART communication and CR
 
 - [![Paschalis Moschogiannis](https://img.shields.io/badge/GitHub-Paschalis_Moschogiannis-00FFFF?style=flat&logo=github)](https://github.com/Paschalis)
 
-- [![Vasileios Dimitriou](https://img.shields.io/badge/GitHub-Vasileios_Dimitriou-7FFF00?style=flat&logo=github)](https://github.com/Vasilisdi)
 
 ### Notes
 

@@ -1,9 +1,9 @@
 // Top-Level Module for UART with CRC Error Detection
 module uart_crc_top (
-    input wire clk,         // Clock input
-    input wire reset,       // Reset input
+    input wire clk,           // Clock input
+    input wire reset,         // Reset input
     input wire [7:0] tx_data_in, // 8-bit data input for transmission
-    input wire tx_start,    // Transmit start signal
+    input wire tx_start,      // Transmit start signal
     output wire [7:0] rx_data_out, // 8-bit data output from reception
     output wire rx_ready_out, // Receive ready flag
     output wire crc_valid_out // CRC validity flag
@@ -12,6 +12,7 @@ module uart_crc_top (
 wire tx_out, tx_busy, rx_ready;
 wire [7:0] rx_data;
 wire [15:0] tx_crc, rx_crc;
+reg tx_crc_valid;
 
 // Instantiate UART Transmitter
 uart_transmitter uart_tx (
@@ -42,12 +43,25 @@ crc_generator crc_gen (
     .crc_out(tx_crc)
 );
 
+// Data valid signal for CRC checking
+reg data_valid;
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        data_valid <= 0;
+    end else if (rx_ready) begin
+        data_valid <= 1;
+    end else begin
+        data_valid <= 0;
+    end
+end
+
 // Instantiate CRC Checker
 crc_checker crc_check (
     .clk(clk),
     .reset(reset),
     .data_in(rx_data),
     .crc_in(rx_crc),
+    .data_valid(data_valid),  // Data valid signal
     .crc_valid(crc_valid_out)
 );
 
