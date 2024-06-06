@@ -1,0 +1,3 @@
+# Ignore Icarus Verilog output files
+*.vcd
+*.vvp
