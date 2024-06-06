@@ -1,19 +1,34 @@
 # UART with CRC Error Detection on FPGA
 
-This repository contains the code and materials for the "Implement and evaluate an error resilient technique on hardware (RTL/Synthesis)" project, part of the course "ΜΔΕ618 Αξιόπιστα Συστήματα" (PGS618 Dependable Systems), as part of the curriculum of the Department of Electrical and Computer Engineering which belongs to the School of Engineering of the University of Thessaly.
+This repository contains the code and materials for the "Implement and evaluate an error-resilient technique on hardware (RTL/Synthesis)" project, part of the course "ΜΔΕ618 Αξιόπιστα Συστήματα" (PGS618 Dependable Systems), as part of the curriculum of the Department of Electrical and Computer Engineering, School of Engineering, University of Thessaly.
 
 ## Introduction
 
 UART (Universal Asynchronous Receiver/Transmitter) is a hardware communication protocol that allows asynchronous serial communication between devices. CRC (Cyclic Redundancy Check) is an error-detecting code commonly used to detect accidental changes to raw data. By combining UART with CRC, we can ensure that the data transmitted is received correctly, thus enhancing the reliability of communication.
 
-## Files
+This project includes two implementations of CRC:
+- **CRC-8**: A simpler and faster error detection method suitable for applications with less critical data integrity needs.
+- **CRC-16**: A more robust error detection method suitable for applications requiring higher reliability and error detection capability.
 
-- **uart_transmitter.v**: UART transmitter module with CRC integration.
-- **uart_receiver.v**: UART receiver module with CRC extraction.
-- **crc_generator.v**: CRC generator module using the CRC-16 polynomial (0x1021).
-- **crc_checker.v**: CRC checker module that validates the received CRC.
-- **uart_crc_top.v**: Top-level module integrating the UART and CRC components.
-- **uart_crc_top_tb.v**: Testbench for the top-level module.
+## File Structure
+
+### CRC-8 Implementation
+
+- **uart_crc_top_crc8.v**: Top-level module integrating the UART and CRC-8 components.
+- **uart_transmitter_crc8.v**: UART transmitter module with CRC-8 integration.
+- **uart_receiver_crc8.v**: UART receiver module with CRC-8 extraction.
+- **crc_generator_crc8.v**: CRC generator module using the CRC-8 polynomial (0x07).
+- **crc_checker_crc8.v**: CRC checker module that validates the received CRC-8.
+- **uart_crc_top_tb_crc8.v**: Testbench for the top-level module with CRC-8.
+
+### CRC-16 Implementation
+
+- **uart_crc_top_crc16.v**: Top-level module integrating the UART and CRC-16 components.
+- **uart_transmitter_crc16.v**: UART transmitter module with CRC-16 integration.
+- **uart_receiver_crc16.v**: UART receiver module with CRC-16 extraction.
+- **crc_generator_crc16.v**: CRC generator module using the CRC-16 polynomial (0x1021).
+- **crc_checker_crc16.v**: CRC checker module that validates the received CRC-16.
+- **uart_crc_top_tb_crc16.v**: Testbench for the top-level module with CRC-16.
 
 ## Hardware Setup
 
@@ -33,17 +48,20 @@ UART (Universal Asynchronous Receiver/Transmitter) is a hardware communication p
 
 ## Testing
 
-The provided testbench (`uart_crc_top_tb.v`) tests the UART communication and CRC error detection. Run the simulation in Vivado to ensure the data is transmitted and received correctly, and the CRC is validated.
+Each implementation has a corresponding testbench:
+- **CRC-8 Testbench (`uart_crc_top_tb_crc8.v`)**: Tests the UART communication and CRC-8 error detection.
+- **CRC-16 Testbench (`uart_crc_top_tb_crc16.v`)**: Tests the UART communication and CRC-16 error detection.
+
+Run the simulation in Vivado to ensure the data is transmitted and received correctly, and the CRC is validated.
 
 ## Authors
 
 - [![Paschalis Moschogiannis](https://img.shields.io/badge/GitHub-Paschalis_Moschogiannis-00FFFF?style=flat&logo=github)](https://github.com/Paschalis)
 
-
 ### Notes
 
 - Ensure the correct baud rate is set for your system clock.
-- Modify the testbench to include various test cases, including erroneous data for robust testing.
+- Modify the testbenches to include various test cases, including erroneous data for robust testing.
 
 ## License
 
