@@ -11,10 +11,12 @@ module crc_checker (
 reg [7:0] crc;
 
 // CRC-8 polynomial: x^8 + x^2 + x + 1 (0x07)
+
+// Sequential Feedback Implementation
 always @(posedge clk or posedge reset) begin
     if (reset) begin
-        crc <= 8'b0; // Reset CRC
-        crc_valid <= 0; // Reset CRC valid flag
+        crc <= 8'b0;       // Reset CRC
+        crc_valid <= 0;     // Reset CRC valid flag
     end else if (data_valid) begin
         crc <= crc ^ data_in;
         crc <= {crc[6:0], 1'b0} ^ (crc[7] ? 8'b00000111 : 8'b0);
@@ -27,5 +29,28 @@ always @(posedge clk or posedge reset) begin
         crc_valid <= (crc == crc_in); // Compare computed CRC with received CRC
     end
 end
+
+/*
+// Iterative Shift and XOR Implementation (Compact Version)
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        crc <= 8'b0;       // Reset CRC
+        crc_valid <= 0;     // Reset CRC valid flag
+    end else if (data_valid) begin
+        integer i;
+        reg [7:0] temp_crc;
+        temp_crc = crc ^ data_in; // XOR input data with current CRC
+        for (i = 0; i < 8; i = i + 1) begin
+            if (temp_crc[7]) begin
+                temp_crc = (temp_crc << 1) ^ 8'b00000111; // Apply feedback if MSB is 1
+            end else begin
+                temp_crc = temp_crc << 1; // Shift left if MSB is 0
+            end
+        end
+        crc <= temp_crc;    // Update CRC
+        crc_valid <= (temp_crc == crc_in); // Compare computed CRC with received CRC
+    end
+end
+*/
 
 endmodule
