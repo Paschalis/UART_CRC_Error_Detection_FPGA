@@ -1,4 +1,3 @@
-// CRC Generator Module (CRC-8)
 module crc_generator (
     input wire clk,           // Clock input
     input wire reset,         // Reset input
@@ -27,23 +26,24 @@ always @(posedge clk or posedge reset) begin
     end
 end
 
-// // Iterative Shift and XOR Implementation (Compact Version)
-// always @(posedge clk or posedge reset) begin
-//     if (reset) begin
-//         crc <= 8'b0; // Reset CRC
-//     end else begin
-//         integer i;
-//         crc = crc ^ data_in; // XOR input data with current CRC
-//         for (i = 0; i < 8; i = i + 1) begin
-//             if (crc[7]) begin
-//                 crc = (crc << 1) ^ 8'b00000111; // Apply feedback if MSB is 1
-//             end else begin
-//                 crc = crc << 1; // Shift left if MSB is 0
-//             end
-//         end
-//         crc_out <= crc; // Update CRC output
-//     end
-// end
-
+/*
+// Iterative Shift and XOR Implementation (Compact Version)
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        crc <= 8'b0; // Reset CRC
+    end else begin
+        integer i;
+        crc = crc ^ data_in; // XOR input data with current CRC
+        for (i = 0; i < 8; i = i + 1) begin
+            if (crc[7]) begin
+                crc = (crc << 1) ^ 8'b00000111; // Apply feedback if MSB is 1
+            end else begin
+                crc = crc << 1; // Shift left if MSB is 0
+            end
+        end
+        crc_out <= crc; // Update CRC output
+    end
+end
+*/
 
 endmodule
