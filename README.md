@@ -4,6 +4,13 @@ This repository contains the code and materials for the "Implement and evaluate 
 
 ## Introduction
 
+[![Alt Text](poster_in_English.png)](poster_in_English.pdf)
+
+<p align="center">
+  <b>Click on the image to open the PDF.</b>
+</p>
+
+
 UART (Universal Asynchronous Receiver/Transmitter) is a hardware communication protocol that allows asynchronous serial communication between devices. CRC (Cyclic Redundancy Check) is an error-detecting code commonly used to detect accidental changes to raw data. By combining UART with CRC, we can ensure that the data transmitted is received correctly, thus enhancing the reliability of communication.
 
 This project includes two implementations of CRC:
