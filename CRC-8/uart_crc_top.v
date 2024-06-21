@@ -12,7 +12,7 @@ module uart_crc_top (
 wire tx_out, tx_busy, rx_ready;
 wire [7:0] rx_data;
 wire [7:0] tx_crc, rx_crc;
-reg tx_crc_valid;
+reg data_valid;
 
 // Instantiate UART Transmitter
 uart_transmitter uart_tx (
@@ -44,14 +44,11 @@ crc_generator crc_gen (
 );
 
 // Data valid signal for CRC checking
-reg data_valid;
 always @(posedge clk or posedge reset) begin
     if (reset) begin
         data_valid <= 0;
-    end else if (rx_ready) begin
-        data_valid <= 1;
     end else begin
-        data_valid <= 0;
+        data_valid <= rx_ready; // Use rx_ready from uart_receiver
     end
 end
 
@@ -61,11 +58,10 @@ crc_checker crc_check (
     .reset(reset),
     .data_in(rx_data),
     .crc_in(rx_crc),
-    .data_valid(data_valid),  // Data valid signal
-    .crc_valid(crc_valid_out)
+    .crc_error(crc_valid_out) // Connect to crc_valid_out
 );
 
-assign rx_data_out = rx_data;  // Assign received data to output
+assign rx_data_out = rx_data;   // Assign received data to output
 assign rx_ready_out = rx_ready; // Assign receive ready flag to output
 
 endmodule

@@ -31,28 +31,15 @@ This project includes two implementations of CRC:
   - `uart_transmitter/`: Folder for UART transmitter module debugging.
     - `uart_transmitter.v`: UART transmitter module file.
     - `uart_transmitter_tb.v`: Testbench for UART transmitter module.
-    - `uart_transmitter_tb.vcd`: VCD file for UART transmitter module simulation.
-  - `crc_generator/`: Folder for CRC generator module debugging.
-    - `crc_generator.v`: CRC generator module file.
-    - `crc_generator_tb.v`: Testbench for CRC generator module.
-    - `crc_generator_tb.vcd`: VCD file for CRC generator module simulation.
-  - `uart_receiver/`: Folder for UART receiver module debugging.
-    - `uart_receiver.v`: UART receiver module file.
-    - `uart_receiver_tb.v`: Testbench for UART receiver module.
-    - `uart_receiver_tb.vcd`: VCD file for UART receiver module simulation.
-  - `crc_checker/`: Folder for CRC checker module debugging.
-    - `crc_checker.v`: CRC checker module file.
-    - `crc_checker_tb.v`: Testbench for CRC checker module.
-    - `crc_checker_tb.vcd`: VCD file for CRC checker module simulation.
 
 ### CRC-16 Implementation
 
-- **uart_crc_top_crc16.v**: Top-level module integrating the UART and CRC-16 components.
-- **uart_transmitter_crc16.v**: UART transmitter module with CRC-16 integration.
-- **uart_receiver_crc16.v**: UART receiver module with CRC-16 extraction.
-- **crc_generator_crc16.v**: CRC generator module using the CRC-16 polynomial (0x1021).
-- **crc_checker_crc16.v**: CRC checker module that validates the received CRC-16.
-- **uart_crc_top_tb_crc16.v**: Testbench for the top-level module with CRC-16.
+- **uart_crc_top_crc.v**: Top-level module integrating the UART and CRC-16 components.
+- **uart_transmitter_crc.v**: UART transmitter module with CRC-16 integration.
+- **uart_receiver_crc.v**: UART receiver module with CRC-16 extraction.
+- **crc_generator_crc.v**: CRC generator module using the CRC-16 polynomial (0x1021).
+- **crc_checker_crc.v**: CRC checker module that validates the received CRC-16.
+- **uart_crc_top_tb_crc.v**: Testbench for the top-level module with CRC-16.
 
 ## Hardware Setup
 
@@ -73,8 +60,8 @@ This project includes two implementations of CRC:
 ## Testing
 
 Each implementation has a corresponding testbench:
-- **CRC-8 Testbench (`uart_crc_top_tb_crc8.v`)**: Tests the UART communication and CRC-8 error detection.
-- **CRC-16 Testbench (`uart_crc_top_tb_crc16.v`)**: Tests the UART communication and CRC-16 error detection.
+- **CRC-8 Testbench (`uart_crc_top_tb_crc.v`)**: Tests the UART communication and CRC-8 error detection.
+- **CRC-16 Testbench (`uart_crc_top_tb_crc.v`)**: Tests the UART communication and CRC-16 error detection.
 
 Run the simulation in Vivado to ensure the data is transmitted and received correctly, and the CRC is validated.
 
