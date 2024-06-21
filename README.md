@@ -21,12 +21,29 @@ This project includes two implementations of CRC:
 
 ### CRC-8 Implementation
 
-- **uart_crc_top_crc8.v**: Top-level module integrating the UART and CRC-8 components.
-- **uart_transmitter_crc8.v**: UART transmitter module with CRC-8 integration.
-- **uart_receiver_crc8.v**: UART receiver module with CRC-8 extraction.
-- **crc_generator_crc8.v**: CRC generator module using the CRC-8 polynomial (0x07).
-- **crc_checker_crc8.v**: CRC checker module that validates the received CRC-8.
-- **uart_crc_top_tb_crc8.v**: Testbench for the top-level module with CRC-8.
+- **uart_crc_top_crc.v**: Top-level module integrating the UART and CRC-8 components.
+- **uart_transmitter_crc.v**: UART transmitter module with CRC-8 integration.
+- **uart_receiver_crc.v**: UART receiver module with CRC-8 extraction.
+- **crc_generator_crc.v**: CRC generator module using the CRC-8 polynomial (0x07).
+- **crc_checker_crc.v**: CRC checker module that validates the received CRC-8.
+- **uart_crc_top_tb_crc.v**: Testbench for the top-level module with CRC-8.
+- `debug/`: Folder for debugging individual modules.
+  - `uart_transmitter/`: Folder for UART transmitter module debugging.
+    - `uart_transmitter.v`: UART transmitter module file.
+    - `uart_transmitter_tb.v`: Testbench for UART transmitter module.
+    - `uart_transmitter_tb.vcd`: VCD file for UART transmitter module simulation.
+  - `crc_generator/`: Folder for CRC generator module debugging.
+    - `crc_generator.v`: CRC generator module file.
+    - `crc_generator_tb.v`: Testbench for CRC generator module.
+    - `crc_generator_tb.vcd`: VCD file for CRC generator module simulation.
+  - `uart_receiver/`: Folder for UART receiver module debugging.
+    - `uart_receiver.v`: UART receiver module file.
+    - `uart_receiver_tb.v`: Testbench for UART receiver module.
+    - `uart_receiver_tb.vcd`: VCD file for UART receiver module simulation.
+  - `crc_checker/`: Folder for CRC checker module debugging.
+    - `crc_checker.v`: CRC checker module file.
+    - `crc_checker_tb.v`: Testbench for CRC checker module.
+    - `crc_checker_tb.vcd`: VCD file for CRC checker module simulation.
 
 ### CRC-16 Implementation
 
